@@ -1,0 +1,58 @@
+#include<stdio.h>
+int main()
+{
+	int a[10],b[10],n,f,i,j,e[25],q,m;
+	char c[10],d[10];
+	while(scanf("%d",&n)!=EOF)
+	{
+		scanf("%s",c);
+		scanf("%s",d);
+		for(i=0;i<n;i++)
+			b[i]=d[i]-'0';
+		j=0;
+		m=0;
+		for(i=0;i<n;i++)
+		{
+			a[i]=c[i]-'0';
+			e[m++]=1;
+			if(a[i]==b[j])
+			{
+				q=i;
+				e[m++]=2;
+				j++;
+				a[i]=0;
+				q--;
+				while(a[q]==b[j]&&q>=0)
+				{
+					e[m++]=2;
+					a[q]=0;
+					j++;
+					q--;
+				}
+			}
+		}
+		e[m]=10;
+		f=0;
+		for(i=0;i<n;i++)
+			if(a[i]!=0)
+			{
+				f=1;
+				break;
+			}
+		if(f==0)
+		{
+			printf("Yes.\n");
+			for(i=0;e[i]!=10;i++)
+			{
+				if(e[i]==1)
+					printf("in\n");
+				else
+					printf("out\n");
+			}
+			printf("FINISH\n");
+		}
+		else
+			printf("No.\nFINISH\n");
+	}
+	return 0;
+}
